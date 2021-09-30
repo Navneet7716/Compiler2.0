@@ -1,4 +1,4 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  url: "http://65.0.5.35/api/",
+  url: "http://40.88.35.254/api/",
 };
