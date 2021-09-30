@@ -1,4 +1,4 @@
-# Currently the compiler is down due to EC2 Cost 😐
+# Shifted to azure
 
 # Compiler
 This is a online code compiler like Jdoodle made with Nodejs and Express by Navneet Kumar Singh
