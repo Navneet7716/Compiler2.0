@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1", Submitrouter);
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Server started at port ${port}`);
 });
