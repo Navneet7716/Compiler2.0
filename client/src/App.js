@@ -303,6 +303,9 @@ function App() {
 
   useEffect(() => {
     let l = JSON.parse(localStorage.getItem("theme"));
+    alert(
+      "this app won't work as I have exhausted both my azure and aws credits 😅"
+    );
 
     if (l == null) {
       l = false;
