@@ -24,6 +24,11 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-dracula";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/snippets/java";
+import "ace-builds/src-noconflict/snippets/c_cpp";
+import "ace-builds/src-noconflict/snippets/python";
+import "ace-builds/src-noconflict/theme-xcode";
 
 import env from "./env/env";
 
@@ -380,15 +385,17 @@ function App() {
                       ? localStorage.getItem("lang")
                       : lang
                   }
-                  theme={darkmode ? "monokai" : "github"}
+                  theme={darkmode ? "monokai" : "xcode"}
                   onChange={onCodeChangeHandler}
                   name="Monaco"
                   fontSize={16}
                   editorProps={{ $blockScrolling: true }}
                   highlightActiveLine={true} 
-                  enableLiveAutocompletion={true}
-                  enableBasicAutocompletion={true}
-                  enableSnippets={true}
+                  setOptions={{
+                    enableBasicAutocompletion: true,
+                    enableLiveAutocompletion: true,
+                    enableSnippets: true
+                  }}
                   focus={true}
                   value={ReturnValue()}
                 />
