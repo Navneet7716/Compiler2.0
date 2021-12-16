@@ -292,10 +292,10 @@ function App() {
     <div className={darkmode ? "fullBodyDark" : "fullBody"}>
       <Container>
         {loading ? <LinearProgress /> : <></>}
-        <Alert severity="error">
+        {/* <Alert severity="error">
         <AlertTitle>Error</AlertTitle>
         this app won't work as I have exhausted both my azure and aws credits 😅
-      </Alert>
+      </Alert> */}
 
         <div className="row">
           <div className="column left">
