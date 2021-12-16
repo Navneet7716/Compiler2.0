@@ -67,7 +67,7 @@ function App() {
   const [lang, setlang] = useState("c_cpp");
   const [loading, setLoading] = useState(false);
   const [input, setinput] = useState("");
-  const [darkmode, setDarkMode] = useState(false);
+  const [darkmode, setDarkMode] = useState(JSON.parse(localStorage.getItem("theme")) || false);
 
   const [javaCode, setJavaCode] = useState(defaultCode.defaultCode.java);
   const [cppCode, setCppCode] = useState(defaultCode.defaultCode.cpp);
