@@ -13,8 +13,17 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Paper from "@material-ui/core/Paper";
 import { Switch } from "@material-ui/core";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-
+import { Alert, AlertTitle } from '@material-ui/lab';
 import { makeStyles } from "@material-ui/core/styles";
+
+import AceEditor from "react-ace";
+
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-c_cpp";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/theme-dracula";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-github";
 
 import env from "./env/env";
 
@@ -55,14 +64,14 @@ function useKey(key, cb) {
 function App() {
   const [myCode, setCode] = useState(defaultCode.defaultCode.cpp);
   const [result, setResult] = useState("Submit Code to See Result");
-  const [lang, setlang] = useState("cpp");
+  const [lang, setlang] = useState("c_cpp");
   const [loading, setLoading] = useState(false);
   const [input, setinput] = useState("");
   const [darkmode, setDarkMode] = useState(false);
 
   const [javaCode, setJavaCode] = useState(defaultCode.defaultCode.java);
   const [cppCode, setCppCode] = useState(defaultCode.defaultCode.cpp);
-  const [cCode, setCCode] = useState(defaultCode.defaultCode.c);
+  // const [cCode, setCCode] = useState(defaultCode.defaultCode.c);
   const [pythonCode, setPythonCode] = useState(defaultCode.defaultCode.python);
 
   // const [theme, setTheme] = useState("");
@@ -87,22 +96,12 @@ function App() {
         input,
         result,
       };
-    } else if (lang === "cpp") {
+    } else if (lang === "c_cpp") {
       mystate = {
         code:
           localStorage.getItem("cppcode") != null
             ? JSON.parse(localStorage.getItem("cppcode"))
             : cppCode,
-        lang: lang,
-        input,
-        result,
-      };
-    } else if (lang === "c") {
-      mystate = {
-        code:
-          localStorage.getItem("ccode") != null
-            ? JSON.parse(localStorage.getItem("ccode"))
-            : cCode,
         lang: lang,
         input,
         result,
@@ -147,18 +146,12 @@ function App() {
       localStorage.setItem("javacode", JSON.stringify(newcode));
 
       setJavaCode(newcode);
-    } else if (lang === "cpp") {
+    } else if (lang === "c_cpp") {
       localStorage.setItem("lang", lang);
 
       localStorage.setItem("cppcode", JSON.stringify(newcode));
 
       setCppCode(newcode);
-    } else if (lang === "c") {
-      localStorage.setItem("lang", lang);
-
-      localStorage.setItem("ccode", JSON.stringify(newcode));
-
-      setCCode(newcode);
     } else {
       localStorage.setItem("lang", lang);
 
@@ -208,22 +201,8 @@ function App() {
 
         setCode(l);
       }
-    } else if (langu === "cpp") {
+    } else if (langu === "c_cpp") {
       let l = localStorage.getItem("cppcode");
-
-      if (l == null) {
-        setCode(defaultCode.defaultCode[langu]);
-        localStorage.setItem(
-          "code",
-          JSON.stringify(defaultCode.defaultCode[langu])
-        );
-      } else {
-        localStorage.setItem("code", JSON.stringify(l));
-
-        setCode(l);
-      }
-    } else if (langu === "c") {
-      let l = localStorage.getItem("ccode");
 
       if (l == null) {
         setCode(defaultCode.defaultCode[langu]);
@@ -266,16 +245,11 @@ function App() {
         localStorage.getItem("javacode") != null
           ? JSON.parse(localStorage.getItem("javacode"))
           : javaCode;
-    } else if (lang === "cpp") {
+    } else if (lang === "c_cpp") {
       v =
         localStorage.getItem("cppcode") != null
           ? JSON.parse(localStorage.getItem("cppcode"))
           : cppCode;
-    } else if (lang === "c") {
-      v =
-        localStorage.getItem("ccode") != null
-          ? JSON.parse(localStorage.getItem("ccode"))
-          : cCode;
     } else {
       v =
         localStorage.getItem("pythoncode") != null
@@ -303,15 +277,13 @@ function App() {
 
   useEffect(() => {
     let l = JSON.parse(localStorage.getItem("theme"));
-    alert(
-      "this app won't work as I have exhausted both my azure and aws credits 😅"
-    );
+   
 
     if (l == null) {
       l = false;
     }
 
-    setlang("cpp");
+    setlang("c_cpp");
 
     localStorage.setItem("theme", l);
   }, []);
@@ -320,6 +292,10 @@ function App() {
     <div className={darkmode ? "fullBodyDark" : "fullBody"}>
       <Container>
         {loading ? <LinearProgress /> : <></>}
+        <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+        this app won't work as I have exhausted both my azure and aws credits 😅
+      </Alert>
 
         <div className="row">
           <div className="column left">
@@ -343,8 +319,7 @@ function App() {
                   onChange={(e) => onLangSelectHandler(e)}
                   label="Language"
                 >
-                  <MenuItem value={"cpp"}>C++</MenuItem>
-                  <MenuItem value={"c"}>C</MenuItem>
+                  <MenuItem value={"c_cpp"}>C++</MenuItem>
                   <MenuItem value={"java"}>Java 11</MenuItem>
                   <MenuItem value={"python"}>Python3</MenuItem>
                 </Select>
@@ -383,7 +358,7 @@ function App() {
                   padding: "5px",
                 }}
               >
-                <MonacoEditor
+                {/* <MonacoEditor
                   width="830"
                   height="500"
                   language={
@@ -396,6 +371,26 @@ function App() {
                   options={options}
                   onChange={onCodeChangeHandler}
                   editorDidMount={editorDidMount}
+                /> */}
+                <AceEditor
+                  height="100vh"
+                  width="400"
+                  mode={
+                    localStorage.getItem("lang") != null
+                      ? localStorage.getItem("lang")
+                      : lang
+                  }
+                  theme={darkmode ? "monokai" : "github"}
+                  onChange={onCodeChangeHandler}
+                  name="Monaco"
+                  fontSize={16}
+                  editorProps={{ $blockScrolling: true }}
+                  highlightActiveLine={true} 
+                  enableLiveAutocompletion={true}
+                  enableBasicAutocompletion={true}
+                  enableSnippets={true}
+                  focus={true}
+                  value={ReturnValue()}
                 />
               </Paper>
             </div>

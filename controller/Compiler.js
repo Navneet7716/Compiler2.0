@@ -21,7 +21,7 @@ exports.CplusplusRunner = async (code, input) => {
         const filePath = path.join(__dirname, "../b.cpp");
         console.log("FILE PATH >> " + filePath);
 
-        exec("sudo g++ -s " + filePath, (err, stdout, stderr) => {
+        exec("g++ -s " + filePath, (err, stdout, stderr) => {
           if (err) {
             console.error(`exec error: ${err}`);
             resolve({

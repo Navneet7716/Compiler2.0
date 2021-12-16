@@ -2,13 +2,7 @@
 using namespace std;
 
 int main() {
-	int n =100;
-	while(n>0) {
-		n--;
-		if (n%2==0) {
-		cout << n << endl;
-
-		}
-	}
+	
+	cout << "HELLO WORLD";
 	return 0;
 }
