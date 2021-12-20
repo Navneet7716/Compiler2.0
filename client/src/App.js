@@ -24,6 +24,8 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-dracula";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/theme-crimson_editor";
+import "ace-builds/src-noconflict/theme-eclipse";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/snippets/java";
 import "ace-builds/src-noconflict/snippets/c_cpp";
@@ -385,7 +387,7 @@ function App() {
                       ? localStorage.getItem("lang")
                       : lang
                   }
-                  theme={darkmode ? "monokai" : "xcode"}
+                  theme={darkmode ? "monokai" : "crimson_editor"}
                   onChange={onCodeChangeHandler}
                   name="Monaco"
                   fontSize={16}
