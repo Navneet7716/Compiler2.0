@@ -127,12 +127,7 @@ function App() {
 
     // console.log(mystate);
 
-    if (window.location.protocol == "https:") {
-      alert("You are accessing the https version which will not work, Redirecting you to http version.")
-      window.location.href =
-        window.location.href.replace(
-                   'https:', 'http:');
-    }
+  
 
     axios
       .post(`${env.url}v1/submit`, mystate)
@@ -290,6 +285,13 @@ function App() {
   const classes = useStyles();
 
   useEffect(() => {
+
+    if (window.location.protocol === "https:") {
+      alert("You are accessing the https version which will not work, Redirecting you to http version.")
+      window.location.href =
+        window.location.href.replace(
+                   'https:', 'http:');
+    }
     let l = JSON.parse(localStorage.getItem("theme"));
    
 
