@@ -307,6 +307,10 @@ function App() {
   return (
     <div className={darkmode ? "fullBodyDark" : "fullBody"}>
       <Container>
+      <Alert severity="error">
+      <AlertTitle>Error</AlertTitle>
+      This website no longer works as my aws account got suspended 😢 — <strong>Sorry!</strong>
+      </Alert>
         {loading ? <LinearProgress /> : <></>}
         {/* <Alert severity="error">
         <AlertTitle>Error</AlertTitle>
