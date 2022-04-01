@@ -307,10 +307,10 @@ function App() {
   return (
     <div className={darkmode ? "fullBodyDark" : "fullBody"}>
       <Container>
-      <Alert severity="error">
+      {/* <Alert severity="error">
       <AlertTitle>Error</AlertTitle>
       This website no longer works as my aws account got suspended 😢 — <strong>Sorry!</strong>
-      </Alert>
+      </Alert> */}
         {loading ? <LinearProgress /> : <></>}
         {/* <Alert severity="error">
         <AlertTitle>Error</AlertTitle>
@@ -465,6 +465,8 @@ function App() {
                 style={{
                   width: "350px",
                   height: "30vh",
+                  backgroundColor: darkmode ? "#3d3d3d" : "white",
+                  color: darkmode ? "white" : "black"
                 }}
                 type="text"
                 value={input}
@@ -480,6 +482,8 @@ function App() {
                   style={{
                     width: "350px",
                     height: "60vh",
+                    backgroundColor: darkmode ? "#3d3d3d" : "white",
+                    color: darkmode ? "white" : "black"
                   }}
                   value={result}
                   disabled={true}
