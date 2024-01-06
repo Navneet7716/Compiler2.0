@@ -1,4 +1,4 @@
-# Back Up AGAINNN ON GCP !!
+# Project is not live anymore as I have exhausted all my free credits on all websites 😢
 
 # Compiler
 This is a online code compiler like Jdoodle made with Nodejs and Express by Navneet Kumar Singh
